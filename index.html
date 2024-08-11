@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <script>
+    let currentMood = ""
+    function onMoodClicked(mood) {
+      currentMood = mood
+    }
+    
+    function getMoodColor(mood) {
+      if(mood === "good"){
+        return 'green'
+      } else if (mood === "neutral"){
+        return 'orange'
+      } else {
+        return 'red'
+      }
+    }
+    
+    function onLogMoodClicked() {
+      //mood color
+      const moodsSection = document.getElementById('moods-section')
+      const moodColor = getMoodColor(currentMood)
+      let cell = document.createElement('div')
+      cell.style.backgroundColor = moodColor
+      cell.style.width = '15px'
+      cell.style.height = '15px'
+      cell.style.display = 'inline-block'
+      cell.style.marginRight = '4px'
+      moodsSection.appendChild(cell)
+
+      //description
+      const descriptionLabel = document.getElementById('description-label')
+      const descriptionValue = document.getElementById('description').value
+      descriptionLabel.innerHTML = descriptionValue
+    }
+  </script>
+</head>
+
+<body>
+  <h1>My Daily Mood</h1>
+  <h2>What's your mood today?</h2>
+  <button onclick="onMoodClicked('good')" style="font-size: 20px;">🤩</button>
+  <button onclick="onMoodClicked('neutral')" style="font-size: 20px;">🥹</button>
+  <button onclick="onMoodClicked('bad')" style="font-size: 20px;">😔</button>
+  <div style="margin-top: 8px; margin-bottom: 8px;">
+    <input id = "description" type="text" placeholder="Description" />
+  </div>
+  <button onclick="onLogMoodClicked()">Log my mood</button>
+
+  <section>
+    <h2>Mood List</h2>
+    <div id="moods-section">
+    </div>
+    <div>
+      <label>Description:</label>
+      <label id = "description-label">Glad to hear a good news!</label>
+    </div>
+  </section>
+</body>
+
+</html>
